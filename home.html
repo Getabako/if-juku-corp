@@ -16,8 +16,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Klee+One:wght@600&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/portal.css">
+<script>try{var s=sessionStorage;if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&(s.getItem("portal")==="home"||!s.getItem("portalSeen")))document.documentElement.classList.add("portal-on")}catch(e){}</script>
 </head>
-<body>
+<body data-page="home">
 
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -1054,5 +1056,6 @@
   });
   document.documentElement.classList.add('bx-ready');
 </script>
+<script src="assets/js/portal.js"></script>
 </body>
 </html>

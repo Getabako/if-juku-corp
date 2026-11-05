@@ -670,7 +670,9 @@ button, input, select, textarea { font: inherit; letter-spacing: inherit; color:
   .nav-toggle { display: block; }
   .header-cta { display: none; }
   .nav {
-    position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; margin: 0;
+    position: fixed; top: var(--header-h); left: 0; right: 0; bottom: auto; margin: 0;
+    /* ヘッダーの backdrop-filter で fixed の基準がヘッダーになるため、高さは画面から決める */
+    height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h));
     flex-direction: column; gap: 0; padding: 12px 24px 32px; background: rgba(250, 250, 248, .98);
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     transform: translateY(-8px); opacity: 0; visibility: hidden; transition: opacity .3s, transform .3s var(--ease), visibility .3s;
@@ -1428,3 +1430,20 @@ p, li, figcaption, td, th, .stat-label { text-wrap: pretty; word-break: auto-phr
 .btn-talk { gap: .45em; }
 .btn-talk img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: top; background: #FFE9D2; }
 @media (max-width: 768px) { .header-cta { display: none !important; } }
+
+/* v6: PC のメニューが1文字ずつ折り返さないように */
+@media (min-width: 1025px) {
+  .nav { flex-shrink: 0; }
+  .nav > a, .header-cta .btn { white-space: nowrap; flex-shrink: 0; }
+  .header-inner { gap: 22px; }
+}
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .nav { gap: 16px; }
+  .nav > a { font-size: .86rem; }
+  .brand > .brand-sub { display: none; }
+}
+@media (min-width: 1025px) {
+  .header-cta .btn-talk { display: inline-flex !important; }
+  .header-cta .btn-ghost:not(.btn-talk) { display: none; }   /* 「開発のご相談」はアイとメニューの「会社概要」から入れる */
+  .nav { gap: 22px; }
+}
