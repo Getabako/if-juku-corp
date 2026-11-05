@@ -1054,3 +1054,10 @@ body { background-image: radial-gradient(rgba(140, 110, 70, .045) 1px, transpare
   .made-list li { grid-template-columns: 1fr; gap: 4px; }
   .price-chara { width: 70px; top: 24px; }
 }
+
+/* platform steps */
+.steps { display: grid; gap: 12px; margin: 1.4rem 0 .4rem; counter-reset: none; }
+.steps li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.step-no { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff; font-family: var(--font-en); font-weight: 800; font-size: 1.05rem; }
+.steps strong { display: block; font-size: 1rem; color: var(--ink); line-height: 1.6; }
+.steps div { font-size: .92rem; color: var(--ink-2); line-height: 1.8; }
