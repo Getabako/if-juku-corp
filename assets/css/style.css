@@ -1425,3 +1425,6 @@ p, li, figcaption, td, th, .stat-label { text-wrap: pretty; word-break: auto-phr
 @media (max-width: 768px) and (max-height: 620px) {
   .m-h-row img { width: 62px; }
 }
+.btn-talk { gap: .45em; }
+.btn-talk img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: top; background: #FFE9D2; }
+@media (max-width: 768px) { .header-cta { display: none !important; } }
