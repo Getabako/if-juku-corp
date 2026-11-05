@@ -1447,3 +1447,15 @@ p, li, figcaption, td, th, .stat-label { text-wrap: pretty; word-break: auto-phr
   .header-cta .btn-ghost:not(.btn-talk) { display: none; }   /* 「開発のご相談」はアイとメニューの「会社概要」から入れる */
   .nav { gap: 22px; }
 }
+
+/* v6: 回転する言葉は、前の言葉が消えてから次が出る（重なって見えない） */
+.rotator { overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.rot-word { transition: opacity .3s ease, transform .3s ease; }
+.rot-word.is-active { transition: opacity .45s var(--ease) .3s, transform .45s var(--ease) .3s; }
+
+/* v6: ヒーローのキャラは if塾の3人（横長）なので幅を広げる */
+.hero-mobuta { width: 210px; }
+@media (max-width: 1200px) { .hero-mobuta { width: 170px; } }
+@media (max-width: 768px) {
+  .m-hero-chara { width: min(150px, 19svh); top: -5%; right: 0; }
+}

@@ -6,7 +6,7 @@
 <title>if塾株式会社 | アイと話して相談する</title>
 <meta name="description" content="if塾株式会社のナビゲーター「アイ」が、開発・研修・講演・AI活用サブスク「アシュラ」のご案内からお申し込みまで、会話だけでご案内します。">
 <meta property="og:title" content="if塾株式会社 | アイと話して相談する">
-<meta property="og:description" content="話しかけるだけで、開発・研修・講演のご相談からお申し込みまで。秋田の顔の見えるAI開発チーム。">
+<meta property="og:description" content="話しかけるだけで、開発・研修・講演のご相談からお申し込みまで。秋田のAI開発・研修の会社 if塾です。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/og.jpg">
 <meta name="theme-color" content="#FBF8F3">
@@ -31,15 +31,35 @@
 
 <main class="a-main">
   <section class="a-stage" aria-label="ナビゲーターのアイ">
-    <div class="a-glow" aria-hidden="true"></div>
-    <canvas id="aiCanvas" class="a-canvas" aria-hidden="true"></canvas>
-    <img src="assets/live2d/ai/base.png" alt="ナビゲーターのアイ" class="a-fallback" id="aiFallback">
-    <div class="a-name"><b>アイ</b><span>if塾の案内役</span></div>
-    <button type="button" class="a-sound" id="soundBtn" aria-pressed="true" aria-label="声のオン・オフ"><i class="fa-solid fa-volume-high"></i></button>
-    <div class="a-say" id="aiSay" aria-live="polite"></div>
+    <div class="bezel">
+      <div class="bezel-top" aria-hidden="true">
+        <span class="lamp on"></span><span class="plate">COMM 01</span><span class="plate-ja">アイ 通信モニター</span>
+        <span class="rec"><i></i>通信中</span>
+      </div>
+      <div class="screen">
+        <div class="a-glow" aria-hidden="true"></div>
+        <canvas id="aiCanvas" class="a-canvas" aria-hidden="true"></canvas>
+        <img src="assets/live2d/ai/base.png" alt="ナビゲーターのアイ" class="a-fallback" id="aiFallback">
+        <div class="crt" aria-hidden="true"></div>
+        <div class="a-name"><b>アイ</b><span>if塾の案内役</span></div>
+        <div class="a-say" id="aiSay" aria-live="polite"></div>
+      </div>
+      <div class="bezel-bottom">
+        <div class="meter" aria-hidden="true">
+          <svg viewBox="0 0 120 70"><path d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke="#D9CFBE" stroke-width="7" stroke-linecap="round"/><path d="M84 20 A48 48 0 0 1 108 62" fill="none" stroke="#FF7A00" stroke-width="7" stroke-linecap="round" opacity=".75"/><g stroke="#8A7F6E" stroke-width="1.6"><line x1="60" y1="8" x2="60" y2="16"/><line x1="26" y1="22" x2="31" y2="28"/><line x1="94" y1="22" x2="89" y2="28"/><line x1="12" y1="62" x2="20" y2="62"/><line x1="108" y1="62" x2="100" y2="62"/></g><g class="needle"><line x1="60" y1="62" x2="60" y2="20" stroke="#1B2233" stroke-width="2.6" stroke-linecap="round"/></g><circle cx="60" cy="62" r="6" fill="#1B2233"/></svg>
+          <span>SIGNAL</span>
+        </div>
+        <div class="vu" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <button type="button" class="a-sound" id="soundBtn" aria-pressed="true" aria-label="声のオン・オフ"><span class="tog"></span><span class="tog-label">VOICE</span></button>
+      </div>
+    </div>
   </section>
 
   <section class="a-chat" aria-label="アイとの会話">
+    <div class="console-head" aria-hidden="true">
+      <span class="plate">LOG</span><span class="plate-ja">会話の記録</span>
+      <span class="lamps"><i></i><i></i><i></i></span>
+    </div>
     <div class="a-log" id="chatLog"></div>
     <div class="a-chips" id="chips"></div>
     <form class="a-input" id="chatForm" autocomplete="off">

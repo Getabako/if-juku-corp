@@ -15,7 +15,7 @@ const IMG = (p) => `assets/img/${p}`;
 
 let voiceOn = true;
 let player = null;
-let speaking = false;
+let speaking = false; document.body.classList.remove('is-talking');
 const history = [];
 
 /* ---------------- Live2D ---------------- */
@@ -68,15 +68,15 @@ function speak(text) {
   showSay(text);
   const plain = text.replace(/[（(][^）)]*[）)]/g, '');
   if (!voiceOn || !('speechSynthesis' in window)) {
-    speaking = true; mouthLoop(); setTimeout(() => { speaking = false; }, Math.min(5000, plain.length * 90));
+    speaking = true; document.body.classList.add('is-talking'); mouthLoop(); setTimeout(() => { speaking = false; document.body.classList.remove('is-talking'); }, Math.min(5000, plain.length * 90));
     return;
   }
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(plain);
   u.lang = 'ja-JP'; u.rate = 1.08; u.pitch = 1.25;
   if (jpVoice) u.voice = jpVoice;
-  u.onstart = () => { speaking = true; mouthLoop(); };
-  u.onend = u.onerror = () => { speaking = false; };
+  u.onstart = () => { speaking = true; document.body.classList.add('is-talking'); mouthLoop(); };
+  u.onend = u.onerror = () => { speaking = false; document.body.classList.remove('is-talking'); };
   speechSynthesis.speak(u);
 }
 
@@ -297,8 +297,8 @@ const INTENTS = {
     setChips([['申し込みフォームで送る', 'apply:一緒に働きたい', 'fa-solid fa-paper-plane'], ['ほかの話', 'menu']]);
   },
   async platform() {
-    await aiSays('予約アプリを、お店が登録するだけで使える仕組みを準備中です。アカウントを作って、お店を登録すれば、LINEで予約を受けられます。先行利用のご相談もどうぞ。');
-    setChips([['先行利用を相談する', 'apply:予約プラットフォームの先行利用', 'fa-solid fa-paper-plane'], ['ほかの話', 'menu']]);
+    await aiSays('予約アプリは、お店に合わせてオーダーメイドでお作りしています。LINEで予約を受けて、お店はスマホで管理できます。地元の美容室さんで動いている実績もありますよ。');
+    setChips([['予約アプリを相談する', 'apply:予約アプリの開発', 'fa-solid fa-paper-plane'], ['料金の目安', 'price'], ['ほかの話', 'menu']]);
   },
 };
 
@@ -379,7 +379,7 @@ micBtn.addEventListener('click', () => {
 soundBtn.addEventListener('click', () => {
   voiceOn = !voiceOn;
   soundBtn.setAttribute('aria-pressed', String(voiceOn));
-  soundBtn.innerHTML = `<i class="fa-solid ${voiceOn ? 'fa-volume-high' : 'fa-volume-xmark'}"></i>`;
+  soundBtn.querySelector('.tog-label').textContent = voiceOn ? 'VOICE' : 'MUTE';
   if (!voiceOn) try { speechSynthesis.cancel(); } catch {}
 });
 
@@ -387,7 +387,7 @@ soundBtn.addEventListener('click', () => {
 function start(withVoice) {
   voiceOn = withVoice;
   soundBtn.setAttribute('aria-pressed', String(voiceOn));
-  soundBtn.innerHTML = `<i class="fa-solid ${voiceOn ? 'fa-volume-high' : 'fa-volume-xmark'}"></i>`;
+  soundBtn.querySelector('.tog-label').textContent = voiceOn ? 'VOICE' : 'MUTE';
   $('startLayer').classList.add('hide');
   if (withVoice && 'speechSynthesis' in window) { const u = new SpeechSynthesisUtterance(''); speechSynthesis.speak(u); }
   INTENTS.greet();
