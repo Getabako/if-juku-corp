@@ -308,8 +308,8 @@
 /* ---------- hero: split title, rotating word, slideshow, parallax ---------- */
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let i = 0;
-  document.querySelectorAll('.hero-title [data-split]').forEach((line) => {
+  document.querySelectorAll('.hero-title, .hero-title2').forEach((title) => { let i = 0;
+  title.querySelectorAll('[data-split]').forEach((line) => {
     const text = line.textContent;
     line.textContent = '';
     for (const ch of text) {
@@ -319,10 +319,9 @@
       s.textContent = ch;
       line.appendChild(s);
     }
-  });
+  }); });
 
-  const rot = document.querySelector('.rotator');
-  if (rot) {
+  document.querySelectorAll('.rotator').forEach((rot) => {
     const words = Array.from(rot.querySelectorAll('.rot-word'));
     const mark = rot.querySelector('.rot-mark');
     let k = 0;
@@ -340,7 +339,7 @@
         fit();
       }, 2800);
     }
-  }
+  });
 
   const slides = Array.from(document.querySelectorAll('#heroSlides img'));
   const cap = document.getElementById('heroCap');
@@ -375,4 +374,60 @@
       });
     });
   }
+})();
+
+
+/* ---------- mobile deck: active slide, dots, counters, cron, nav ---------- */
+(() => {
+  const deck = document.getElementById('mDeck');
+  if (!deck) return;
+  const mq = window.matchMedia('(max-width: 768px)');
+  const slides = Array.from(deck.querySelectorAll('.m-slide'));
+  const dots = document.getElementById('mDots');
+  slides.forEach((s) => {
+    const a = document.createElement('a');
+    a.href = `#${s.id}`;
+    a.setAttribute('aria-label', s.dataset.label || s.id);
+    dots.appendChild(a);
+  });
+  const dotLinks = Array.from(dots.children);
+
+  const countUp = (el) => {
+    if (el.dataset.done) return; el.dataset.done = '1';
+    const target = Number(el.dataset.count); const t0 = performance.now();
+    const tick = (t) => { const p = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4))); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  };
+  const runCron = (slide) => {
+    if (slide.dataset.cron) return; slide.dataset.cron = '1';
+    const items = slide.querySelectorAll('.m-cron li'); const bar = slide.querySelector('.m-cron-bar');
+    items.forEach((li, i) => setTimeout(() => { li.classList.add('is-done'); if (bar) bar.style.width = `${((i + 1) / items.length) * 100}%`; }, 300 + i * 450));
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const s = en.target;
+      s.classList.add('is-on');
+      const idx = slides.indexOf(s);
+      dotLinks.forEach((d, i) => d.classList.toggle('on', i === idx));
+      s.querySelectorAll('[data-count]').forEach(countUp);
+      if (s.querySelector('.m-cron')) runCron(s);
+    });
+  }, { threshold: 0.55 });
+  slides.forEach((s) => io.observe(s));
+
+  // hero slideshow (mobile)
+  const ms = Array.from(deck.querySelectorAll('.m-hero .slides img'));
+  if (ms.length > 1) { let n = 0; setInterval(() => { ms[n].classList.remove('is-active'); n = (n + 1) % ms.length; ms[n].classList.add('is-active'); }, 3800); }
+
+  // menu links → mobile slides
+  const map = { approach: 'm-approach', services: 'm-services', works: 'm-works', field: 'm-field', talent: 'm-talent', pricing: 'm-pricing', company: 'm-company', contact: 'm-contact', ashura: 'm-tools', top: 'm-top' };
+  document.querySelectorAll('.nav a[href^="#"], .brand').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      if (!mq.matches) return;
+      const id = (a.getAttribute('href') || '#top').slice(1);
+      const target = document.getElementById(map[id] || id);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
 })();
