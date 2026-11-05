@@ -29,7 +29,8 @@ async function loadAvatar() {
     if (idle) player.play(idle);
     canvas.classList.add('ready');
     $('aiFallback').classList.add('hide');
-    const look = (x, y) => { try { player.lookAt(x, y); } catch {} };
+    // 振り向きは小さめに（大きく向くと平面の絵が崩れて見える）
+    const look = (x, y) => { try { player.lookAt(x * 0.35, y * 0.3); } catch {} };
     window.addEventListener('pointermove', (e) => {
       const r = canvas.getBoundingClientRect();
       look(Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width) * 2 - 1)), Math.max(-1, Math.min(1, 1 - ((e.clientY - r.top) / r.height) * 2)));
