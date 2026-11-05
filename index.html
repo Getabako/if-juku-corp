@@ -51,41 +51,49 @@
 <main id="top">
 
 <!-- ================= HERO ================= -->
-<section class="hero">
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow reveal"><span class="dot"></span>AKITA / SINCE 2019</p>
-      <h1 class="hero-title reveal delay-1">
-        <span class="line">顔の見えるチームが、</span>
-        <span class="line">AIで、速く確かに</span>
-        <span class="line"><em>つくります。</em></span>
+      <p class="eyebrow hero-in" style="--d:.1s"><span class="dot"></span>AKITA / SINCE 2019</p>
+      <h1 class="hero-title" aria-label="顔の見えるチームが、AIで、速く確かにつくります。">
+        <span class="line" data-split aria-hidden="true">顔の見えるチームが、</span>
+        <span class="line" data-split aria-hidden="true">AIで、速く確かに</span>
+        <span class="line rotator" aria-hidden="true"><span class="rot-word is-active">つくります。</span><span class="rot-word">届けます。</span><span class="rot-word">育てます。</span><span class="rot-mark"></span></span>
       </h1>
-      <p class="hero-lead reveal delay-2">if塾株式会社は、2019年から秋田で人を育ててきたチームが、AIを使いこなして業務アプリ、LINE、Web、ゲームをつくる会社です。相談の聞き取りも、納品後の面倒も、いつも同じ顔ぶれが担当します。</p>
-      <div class="hero-actions reveal delay-3">
-        <a href="#contact" class="btn btn-primary btn-lg"><i class="fa-solid fa-comments"></i>開発を相談する（無料）</a>
+      <p class="hero-lead hero-in" style="--d:1.5s">if塾株式会社は、2019年から秋田で人を育ててきたチームが、AIを使いこなして業務アプリ、LINE、Web、ゲームをつくる会社です。相談の聞き取りも、納品後の面倒も、いつも同じ顔ぶれが担当します。</p>
+      <div class="hero-actions hero-in" style="--d:1.7s">
+        <a href="#contact" class="btn btn-primary btn-lg btn-shine"><i class="fa-solid fa-comments"></i>開発を相談する（無料）</a>
         <a href="#ashura" class="btn btn-outline btn-lg"><i class="fa-solid fa-wand-magic-sparkles"></i>AIツールを自分で使う</a>
       </div>
-      <ul class="hero-badges reveal delay-4">
+      <ul class="hero-badges hero-in" style="--d:1.9s">
         <li><i class="fa-solid fa-bolt"></i>最短1週間で公開</li>
         <li><i class="fa-solid fa-shield-halved"></i>36項目の出荷前点検</li>
         <li><i class="fa-solid fa-handshake"></i>納品後も同じ担当が伴走</li>
       </ul>
     </div>
 
-    <div class="hero-visual reveal delay-2">
-      <figure class="photo photo-main">
-        <img src="assets/img/photo/lecture-group.jpg" alt="講演会のあと、参加した学生や大人たちと撮った集合写真" width="1024" height="768" fetchpriority="high">
-        <figcaption>講演会のあとに、みんなで</figcaption>
+    <div class="hero-visual" id="heroVisual">
+      <figure class="photo photo-main drop" style="--r:1.6deg; --d:.5s">
+        <div class="slides" id="heroSlides">
+          <img src="assets/img/photo/lecture-group.jpg" alt="講演会のあと、参加した学生や大人たちと撮った集合写真" width="1024" height="768" fetchpriority="high" class="is-active" data-cap="講演会のあとに、みんなで">
+          <img src="assets/img/photo/ekimaiku-2.jpg" alt="エキマイクの取材で並ぶメンバー" width="1024" height="768" data-cap="エキマイクで紹介していただきました">
+          <img src="assets/img/photo/minecraft-2.jpg" alt="TDK寮 TSUGUBAのイベントでマインクラフトを体験する参加者" width="1024" height="683" data-cap="TSUGUBA のイベントで、マイクラ体験">
+          <img src="assets/img/photo/lecture-1.jpg" alt="講演会でスクリーンの前に立つ登壇者と参加者" width="1024" height="769" data-cap="講演会。大人も学生も、同じ部屋で">
+          <img src="assets/img/photo/esports-1.jpg" alt="eスポーツ大会でゲームをプレイするメンバー" width="1024" height="768" data-cap="ノースアジア大学のスト6大会で優勝">
+        </div>
+        <figcaption id="heroCap">講演会のあとに、みんなで</figcaption>
       </figure>
-      <figure class="photo photo-sub photo-sub-1">
+      <figure class="photo photo-sub photo-sub-1 drop" style="--r:-5deg; --d:.8s">
         <img src="assets/img/photo/minecraft-1.jpg" alt="イベントでマインクラフトを体験する子どもたち" width="1024" height="683">
         <figcaption>マイクラ体験会</figcaption>
       </figure>
-      <figure class="photo photo-sub photo-sub-2">
+      <figure class="photo photo-sub photo-sub-2 drop" style="--r:4deg; --d:1.05s">
         <img src="assets/img/photo/yokote-1.jpg" alt="横手市のイベントでのeスポーツ会場" width="1024" height="768">
         <figcaption>横手市のイベント</figcaption>
       </figure>
-      <div class="build-log" aria-label="AI開発パイプラインの実行ログのデモ">
+      <img src="assets/img/chara/mobuta_happy.png" alt="" class="hero-mobuta" width="520" height="505" aria-hidden="true">
+      <div class="build-log hero-in" style="--d:1.3s" aria-label="AI開発パイプラインの実行ログのデモ">
         <div class="build-log-head">
           <span class="led"></span><span class="led"></span><span class="led"></span>
           <span class="build-log-title">if-juku / pipeline</span>
@@ -95,7 +103,16 @@
       </div>
     </div>
   </div>
+  <a href="#stats" class="scroll-hint" aria-label="下へスクロール"><span></span></a>
 </section>
+
+<div class="kw-wrap" aria-hidden="true"><div class="kw-band">
+  <div class="kw-track">
+    <span>業務アプリ</span><i></i><span class="o">LINE</span><i></i><span>Webサイト</span><i></i><span class="o">AI研修</span><i></i><span>業務の自動化</span><i></i><span class="o">ゲーム開発</span><i></i><span>人材育成</span><i></i><span class="o">アシュラ</span><i></i>
+    <span>業務アプリ</span><i></i><span class="o">LINE</span><i></i><span>Webサイト</span><i></i><span class="o">AI研修</span><i></i><span>業務の自動化</span><i></i><span class="o">ゲーム開発</span><i></i><span>人材育成</span><i></i><span class="o">アシュラ</span><i></i>
+  </div>
+</div>
+</div>
 
 <!-- ================= STATS ================= -->
 <section class="stats" id="stats">
@@ -235,7 +252,7 @@
         <div class="ui-body">
           <div class="ui-summary">
             <div><p class="ui-k">今日の実行</p><p class="ui-v"><b id="cronDone">0</b> / 20 本</p></div>
-            <div><p class="ui-k">止まっている処理</p><p class="ui-v ok">0 件</p></div>
+            <div><p class="ui-k">停止中</p><p class="ui-v ok">0 件</p></div>
             <div><p class="ui-k">最終確認</p><p class="ui-v">12:00</p></div>
           </div>
           <div class="ui-progress"><span id="cronBar"></span></div>
@@ -737,7 +754,7 @@
         <a href="https://lin.ee/vuQ0087" target="_blank" rel="noopener" class="btn btn-line-outline btn-block"><i class="fa-brands fa-line"></i>アシュラ公式LINEで質問する</a>
         <div class="chara-talk small">
           <img src="assets/img/chara/mobuta_present.png" alt="モブ太" width="520" height="501" loading="lazy">
-          <p class="bubble">ぼくも最初は<br>何もわからなかったよ！</p>
+          <p class="bubble">ぼくも最初は<br>初心者でした！</p>
         </div>
       </div>
     </div>
@@ -779,5 +796,15 @@
 </div>
 
 <script src="assets/js/main.js" defer></script>
+<script type="module">
+  import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
+  const parser = loadDefaultJapaneseParser();
+  const sel = 'main h2, main h3, main p:not(.bubble), main li, main figcaption, main td, main th, .stat-label, .btn, .footer-sub, .bubble';
+  document.querySelectorAll(sel).forEach((el) => {
+    if (el.closest('.hero-title, pre, .kw-band, .ui-jobs .t')) return;
+    try { parser.applyToElement(el); } catch (e) {}
+  });
+  document.documentElement.classList.add('bx-ready');
+</script>
 </body>
 </html>

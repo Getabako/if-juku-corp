@@ -303,3 +303,76 @@
   lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
 })();
+
+
+/* ---------- hero: split title, rotating word, slideshow, parallax ---------- */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0;
+  document.querySelectorAll('.hero-title [data-split]').forEach((line) => {
+    const text = line.textContent;
+    line.textContent = '';
+    for (const ch of text) {
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.style.setProperty('--i', i++);
+      s.textContent = ch;
+      line.appendChild(s);
+    }
+  });
+
+  const rot = document.querySelector('.rotator');
+  if (rot) {
+    const words = Array.from(rot.querySelectorAll('.rot-word'));
+    const mark = rot.querySelector('.rot-mark');
+    let k = 0;
+    const fit = () => rot.style.setProperty('--mw', `${words[k].getBoundingClientRect().width}px`);
+    setTimeout(() => { fit(); rot.classList.add('is-live'); }, 1300);
+    window.addEventListener('resize', fit);
+    if (!reduce) {
+      setInterval(() => {
+        const cur = words[k];
+        cur.classList.remove('is-active');
+        cur.classList.add('is-leaving');
+        setTimeout(() => cur.classList.remove('is-leaving'), 600);
+        k = (k + 1) % words.length;
+        words[k].classList.add('is-active');
+        fit();
+      }, 2800);
+    }
+  }
+
+  const slides = Array.from(document.querySelectorAll('#heroSlides img'));
+  const cap = document.getElementById('heroCap');
+  if (slides.length > 1 && !reduce) {
+    let n = 0;
+    setInterval(() => {
+      slides[n].classList.remove('is-active');
+      n = (n + 1) % slides.length;
+      slides[n].classList.add('is-active');
+      if (cap) {
+        cap.style.opacity = 0;
+        setTimeout(() => { cap.textContent = slides[n].dataset.cap || ''; cap.style.opacity = 1; }, 400);
+      }
+    }, 4200);
+  }
+
+  document.querySelectorAll('.drop').forEach((el) => el.addEventListener('animationend', (e) => { if (e.animationName === 'dropIn') el.classList.add('is-done'); }));
+  const vis = document.getElementById('heroVisual');
+  if (vis && !reduce && window.matchMedia('(pointer: fine)').matches) {
+    const items = [
+      [vis.querySelector('.photo-main'), 10],
+      [vis.querySelector('.photo-sub-1'), 22],
+      [vis.querySelector('.photo-sub-2'), 18],
+    ];
+    vis.closest('.hero').addEventListener('pointermove', (e) => {
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      items.forEach(([el, d]) => {
+        if (!el) return;
+        el.style.setProperty('--px', `${(-x * d).toFixed(1)}px`);
+        el.style.setProperty('--py', `${(-y * d).toFixed(1)}px`);
+      });
+    });
+  }
+})();
