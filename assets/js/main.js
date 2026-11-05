@@ -139,7 +139,15 @@
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
         o.disconnect();
-        items.forEach((li, i) => setTimeout(() => li.classList.add('is-done'), reduceMotion ? 0 : 500 + i * 650));
+        const done = document.getElementById('cronDone');
+        const bar = document.getElementById('cronBar');
+        const total = 20;
+        items.forEach((li, i) => setTimeout(() => {
+          li.classList.add('is-done');
+          const n = Math.round(((i + 1) / items.length) * total);
+          if (done) done.textContent = n;
+          if (bar) bar.style.width = `${(n / total) * 100}%`;
+        }, reduceMotion ? 0 : 500 + i * 650));
       });
     }, { threshold: 0.5 }).observe(cron);
   }
