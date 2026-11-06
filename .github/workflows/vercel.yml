@@ -1,0 +1,19 @@
+# main に push すると Vercel の本番（https://if-juku-corp.vercel.app/）へ公開する
+name: Vercel 本番公開
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency: vercel-prod
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes vercel@latest deploy --prod --yes --token "${{ secrets.VERCEL_TOKEN }}"
