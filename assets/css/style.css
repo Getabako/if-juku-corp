@@ -1459,3 +1459,8 @@ p, li, figcaption, td, th, .stat-label { text-wrap: pretty; word-break: auto-phr
 @media (max-width: 768px) {
   .m-hero-chara { width: min(150px, 19svh); top: -5%; right: 0; }
 }
+
+/* v7 note への導線 */
+.note-link { text-align: center; margin-top: 2.4rem; }
+.note-link .btn i { margin: 0 .5em; }
+.m-note-link { display: inline-flex; align-items: center; gap: .5em; margin-top: .9rem; padding: .55em 1.1em; border: 1.5px solid currentColor; border-radius: 999px; font-size: 15px; font-weight: 700; letter-spacing: .04em; color: inherit; text-decoration: none; }
