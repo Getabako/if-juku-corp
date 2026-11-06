@@ -267,9 +267,9 @@ const INTENTS = {
     setChips([['見積もりを相談する', 'apply', 'fa-solid fa-paper-plane'], ['アシュラを試す', 'ashura'], ['ほかの話', 'menu']]);
   },
   async about() {
-    await aiSays('if塾は、2019年に秋田で生まれたプログラミングとAIの塾が始まりです。いまは、育った若手がAIを使って、県内外の企業にITを届けています。2027年4月に株式会社になります。');
+    await aiSays('if塾は、2024年に秋田で生まれたプログラミングとAIの塾が始まりです。いまは、育った若手がAIを使って、県内外の企業にITを届けています。2027年4月に株式会社になります。');
     addCards([
-      { img: IMG('photo/takasaki.jpg'), title: '代表取締役 高崎 翔太', text: '元臨床心理士。2019年にif(塾)を創業' },
+      { img: IMG('photo/takasaki.jpg'), title: '代表取締役 高崎 翔太', text: '元臨床心理士。2024年にif(塾)を創業' },
       { img: IMG('photo/yamazaki.jpg'), title: '取締役 山﨑 琢己', text: '現場責任者。育成と案件の割り振り' },
       { img: IMG('photo/lecture-group.jpg'), title: '秋田の現場で', text: '講演会・体験会・eスポーツ大会' },
     ]);
